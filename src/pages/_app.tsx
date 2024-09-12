@@ -1,31 +1,26 @@
+import GlobalLayout from "@/components/global-layout";
 import "@/styles/globals.css";
+import { NextPage } from "next";
 import type { AppProps } from "next/app";
-import Link from "next/link";
 import { useRouter } from "next/router";
-import { useEffect } from "react";
+import { ReactNode, useEffect } from "react";
 
-export default function App({ Component, pageProps }: AppProps) {
-  const router = useRouter();
+type NextPageWithLayout = NextPage & {
+  getLayout?: (page: ReactNode) => ReactNode;
+}
 
-  useEffect(() => {
-    router.prefetch("/test");
-  }, [])
-
-  const onClickButton = () => {
-    router.push("/test");
-  }  
+export default function App({ Component, pageProps }: AppProps & {
+  Component:NextPageWithLayout
+}) {
+  const getLayout = 
+  Component.getLayout ?? ((page:ReactNode) => page);
 
   return (
     <>
-    <header>
-      <Link href={"/"}>&nbsp;root</Link>
-      <Link href={"/search"}>&nbsp;search</Link>
-      <Link href={"/book/1"}>&nbsp;book</Link>
-      <div>
-        <button onClick={onClickButton}>/test 페이지로 이동</button>
-      </div>
-    </header>
-    <Component {...pageProps} />
+    
+    <GlobalLayout>
+    {getLayout(<Component {...pageProps} />)}
+    </GlobalLayout>
     </>
   )
 }
