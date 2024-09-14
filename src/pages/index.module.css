@@ -1,7 +1,18 @@
-.h1 {
-    color: red;
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
-.h2 {
-    color: blueviolet;
+.recom_movie_container{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 13px;
+
+}
+.all_movie_container{
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 8px;
+
 }

@@ -1,0 +1,43 @@
+.container {
+   display: flex;
+   flex-direction: column;
+   gap: 10px;
+}
+
+.img_container {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-radius: 20px;
+
+    position: relative;
+}
+
+.img_container::before {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    background-color: rgba(0, 0, 0, 0.5);
+    content: "";
+    
+    
+}
+.title {
+    margin-bottom: 0;
+}
+
+.img_container > img {
+    z-index: 1;
+    border-radius: 20px;
+}
+.description {
+    line-height: 1.3;
+    white-space: pre-line;
+    padding: 5px 0px;
+}
