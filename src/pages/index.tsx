@@ -9,8 +9,11 @@ import fetchRecoMoive from "@/lib/fetch-reco-movie";
 import { InferGetServerSidePropsType } from "next";
 
 export const getServerSideProps = async () => {
-  const allMovies = await fetchMoive();
-  const recoMovies = await fetchRecoMoive();
+  const [allMovies, recoMovies] = await Promise.all([
+    fetchMoive(),
+    fetchRecoMoive()
+  ]);
+  
   return {
     props: {
       allMovies,
