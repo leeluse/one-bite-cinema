@@ -4,15 +4,26 @@ import { useRouter } from "next/router";
 import { ReactNode } from "react";
 import movies from '@/mock/mock.json';
 import style from './index.module.css';
+import { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
+import fetchMoive from "@/lib/fetch-movie";
 
 
+export const getServerSideProps = async (context: GetServerSidePropsContext) => {
+    const q = context.query.q;
+    const searchMovie = await fetchMoive(q as string);
+    return {
+        props: {
+            searchMovie
+        }
+    }
+}
 
-export default function Page() {
-    const router = useRouter();
-    const q = router.query.q as string;
+export default function Page({searchMovie}
+    :InferGetServerSidePropsType<typeof getServerSideProps>) {
+        console.log(searchMovie);
     return (
         <div className={style.container}>
-            {movies.filter((v) => v.title.includes(q))
+            {searchMovie
             .map((movie) => (<MovieItem key={movie.id} {...movie}/>))}
         </div>
     )
