@@ -2,15 +2,15 @@ import style from './[id].module.css';
 import { GetStaticProps, GetStaticPropsContext, InferGetStaticPropsType } from "next";
 import fetchDetailMovie from "@/lib/fetch-detail-movie";
 import { useRouter } from 'next/router';
+import fetchMoive from '@/lib/fetch-movie';
 
 
-export const getStaticPaths = () => {
+export const getStaticPaths = async () => {
+    const movies = await fetchMoive();
     return {
-        paths: [
-            {params: { id: "1022789" }},
-            {params: { id: "1017163" }},
-            {params: { id: "1209217" }}
-        ],
+        paths: movies.map((movie) => {
+            return {params: {id: movie.id.toString() } };
+        }),
         fallback: true,
     }
 }
