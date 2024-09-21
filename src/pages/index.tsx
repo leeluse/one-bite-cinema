@@ -2,18 +2,16 @@
 import SearchableLayout from "@/components/searchable-layout";
 import style from "./index.module.css";
 import { ReactNode } from "react";
-import movies from '@/mock/mock.json';
 import MovieItem from "@/components/movie-item";
 import fetchMoive from "@/lib/fetch-movie";
 import fetchRecoMoive from "@/lib/fetch-reco-movie";
-import { InferGetServerSidePropsType } from "next";
+import { InferGetStaticPropsType } from "next";
 
-export const getServerSideProps = async () => {
+export const getStaticProps = async () => {
   const [allMovies, recoMovies] = await Promise.all([
     fetchMoive(),
     fetchRecoMoive()
   ]);
-  
   return {
     props: {
       allMovies,
@@ -26,7 +24,7 @@ export const getServerSideProps = async () => {
 export default function Home({
   allMovies,
   recoMovies
-}: InferGetServerSidePropsType<typeof getServerSideProps>) {
+}: InferGetStaticPropsType<typeof getStaticProps>) {
   
   return (
     <div className={style.container}>
