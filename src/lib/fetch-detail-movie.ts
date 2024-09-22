@@ -2,8 +2,8 @@ import { MovieData } from "@/types";
 
 export default async function fetchDetailMovie(id: number)
 : Promise<MovieData | null> {
-    console.log(id)
-    const url = `http://localhost:12345/movie/${id}`
+    const url = `https://onebite-cinema-api-main-jade.vercel.app/movie/${id}`
+    
     const res = await fetch(url);
 
     try {

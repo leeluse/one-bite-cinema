@@ -5,16 +5,8 @@ import style from './index.module.css';
 import fetchMoive from "@/lib/fetch-movie";
 import { useRouter } from "next/router";
 import { MovieData } from "@/types";
+import Head from "next/head";
 
-// export const getServerSideProps = async (context: GetServerSidePropsContext) => {
-//     const q = context.query.q;
-//     const searchMovie = await fetchMoive(q as string);
-//     return {
-//         props: {
-//             searchMovie
-//         }
-//     }
-// }
 
 export default function Page() {
     const router = useRouter();
@@ -35,10 +27,20 @@ export default function Page() {
 
 
     return (
+
+        <>
+        <Head>
+            <title>한 입 시네마 - 검색 결과</title>
+            <meta property="og:image" content="/thumbnail.png" />
+            <meta property="og:title" content="한 입 시네마 - 검색 결과" />
+            <meta property="og:description" content="한입 시네마에 등록된 영화들을 만나보세요" />
+        </Head>
         <div className={style.container}>
             {searchMovie
             .map((movie) => (<MovieItem key={movie.id} {...movie}/>))}
         </div>
+        </>
+        
     )
 }
 

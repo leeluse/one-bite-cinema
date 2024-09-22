@@ -1,7 +1,8 @@
 import { MovieData } from "@/types";
 
-export default async function fetchRecoMoive(): Promise<MovieData[]> {
-    const url = `http://localhost:12345/movie/random`;
+export default async function fetchRecoMovie(): Promise<MovieData[]> {
+    const url = `https://onebite-cinema-api-main-jade.vercel.app/movie/random`
+
     const res = await fetch(url);
     try {
         if(!res.ok) {
