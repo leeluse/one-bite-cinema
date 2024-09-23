@@ -1,8 +1,9 @@
-export default function Page({params}) {
+export default function Page({params}: {
+    params: {id: string | string[]}}
+) {
     return (
         <div>
-            movie
-            <div>{params.id}</div>
+            movie: {params.id}
         </div>
     )
 }
