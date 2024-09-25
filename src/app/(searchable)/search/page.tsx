@@ -3,7 +3,7 @@ export default function Page({searchParams}:
 ) {
     return (
     <>
-        <div>검색 결괴: {searchParams?.q}</div>
+        <div>검색 결과: {searchParams?.q}</div>
     </>
     )
 }
