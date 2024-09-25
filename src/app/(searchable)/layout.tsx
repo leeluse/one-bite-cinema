@@ -1,5 +1,5 @@
+import Searchbar from "@/components/searchbar";
 import { ReactNode } from "react";
-import Searchbar from "./searchbar";
 
 export default function Home({ children }: {
     children: ReactNode

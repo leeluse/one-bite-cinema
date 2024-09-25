@@ -1,0 +1,18 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.recom_movie_container{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 13px;
+
+}
+.all_movie_container{
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 8px;
+
+}
