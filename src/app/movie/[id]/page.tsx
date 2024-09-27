@@ -1,6 +1,14 @@
 import { MovieData } from "@/types";
 import style from "./page.module.css";
+import { notFound } from "next/navigation";
 
+export const dynamicParams = false;
+
+export async function generateStaticParams() {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_SERVER_URL}/movie`);
+  const allMovies: MovieData[] = await res.json();
+  return allMovies.map((movie) => ({id: movie.id.toString()}));
+}
 
 export default async function Page({
   params,
@@ -13,7 +21,7 @@ export default async function Page({
     { cache: "force-cache" }
     );
     if(!res.ok) {
-        return <div>요청에 실패하였습니다</div>
+       return <div>실패하였습니다</div>
     }
     const detailMovies: MovieData = await res.json();
 

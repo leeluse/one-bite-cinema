@@ -6,7 +6,7 @@ import style from './page.module.css';
 export default function Page({searchParams}:
     {searchParams: {q?: string}}
 ) {
-    const q = searchParams?.q
+    const q = searchParams?.q as string;
 
     return (
     <>
