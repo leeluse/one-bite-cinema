@@ -2,6 +2,7 @@ import MovieItems from '@/components/movie-item';
 import movies from '@/mock/mock.json';
 import style from './page.module.css';
 
+
 export default function Page({searchParams}:
     {searchParams: {q?: string}}
 ) {
