@@ -35,7 +35,6 @@ async function RecoMovies() {
       {recoMovies.slice(0, 3).map((movie) => (<MovieItems key={movie.id} {...movie}/>))}
     </section>
   )
-
 }
 
 
