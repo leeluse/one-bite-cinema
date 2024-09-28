@@ -1,6 +1,5 @@
 import MovieItems from "@/components/movie-item";
 import style from "./page.module.css";
-import movies from '@/mock/mock.json';
 import { MovieData } from "@/types";
 
 
