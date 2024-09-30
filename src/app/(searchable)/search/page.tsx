@@ -2,13 +2,11 @@ import MovieItems from '@/components/movie-item';
 import style from './page.module.css';
 import { MovieData } from '@/types';
 import { delay } from '@/app/util/delay';
+import { Suspense } from 'react';
+import MovieListSkeleton from '@/components/skeleton/movie-list-skeleton';
 
-
-export default async function Page({searchParams}:
-    {searchParams: {q?: string}}
-) {
-    const q = searchParams?.q as string;
-    await delay(1500);
+async function SearchResult({q}:{q:string}) {
+    await delay(4500);
     const res = await fetch(`${process.env.NEXT_PUBLIC_API_SERVER_URL}/movie?q=${q}`,
         { cache: "force-cache" }
     );
@@ -20,13 +18,26 @@ export default async function Page({searchParams}:
       
     return (
     <>
-    <div className = {style.container}>
         {movies.filter((movie) => movie.title.includes(q)).map((movie) => ( 
         <MovieItems key={movie.id} {...movie} />
         ))}
-    </div>
     </>
     )
+    
+}
+
+export default async function Page({searchParams}:
+    {searchParams: {q?: string}}
+) {
+    return (
+        <div className = {style.container}>
+            <Suspense 
+            key={searchParams.q || ''} 
+            fallback={<MovieListSkeleton count={3} />}>
+            <SearchResult q={searchParams.q || ''}/>
+            </Suspense>
+        </div>
+      )
 }
 
 

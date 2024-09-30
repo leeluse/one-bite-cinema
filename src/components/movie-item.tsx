@@ -7,7 +7,7 @@ export default function MovieItems({
     posterImgUrl
 }: MovieData) {
     return (
-        <Link 
+    <Link 
             className={style.container}
             href={`movie/${id}`}>
         <img src={posterImgUrl}/>
