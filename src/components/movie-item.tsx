@@ -8,8 +8,8 @@ export default function MovieItems({
 }: MovieData) {
     return (
     <Link 
-            className={style.container}
-            href={`movie/${id}`}>
+        className={style.container}
+        href={`movie/${id}`}>
         <img src={posterImgUrl}/>
     </Link>
     )
